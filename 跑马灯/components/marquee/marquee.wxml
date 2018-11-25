@@ -1,0 +1,11 @@
+<!--components/marquee.wxml-->
+<view class="marquee-container" bind:transitionend="transitionend1">
+  <block wx:for="{{marqueeList}}" wx:key="id">
+    <block wx:if="{{index === current}}">
+        <view class="marquee-item {{currentClass}}" bind:transitionend="transitionend" style="transition:transform {{duration}}s ease;">{{item.content}}</view>
+    </block>
+    <block wx:elif="{{index === nextIndex}}">
+      <view class="marquee-item {{nextClass}}" style="transition:transform {{duration}}s ease;">{{item.content}}</view>
+    </block>
+  </block>
+</view>
