@@ -1,27 +1,29 @@
 /* components/marquee.wxss */
 
 /**
-跑马灯容器
+跑马灯容器,可以修改跑马灯的背景颜色字体
 */
-.marquee-container{
-  position:relative;
-  width:100%;
+.marquee-container {
+  position: relative;
+  width: 100%;
   height: 60rpx;
+  line-height: 60rpx;
+  font-size: 28rpx;
+  color: white;
+  background-color: black;
   overflow: hidden;
-  background-color:black;  
   box-sizing: border-box;
 }
+
 /**
 跑马灯条目
 */
-.marquee-item{
+
+.marquee-item {
   position: absolute;
-  width:100%;
-  line-height: 60rpx;
-  font-size:28rpx;
+  width: 100%;
   overflow: hidden;
   padding: 0rpx 10rpx;
-  color:white;
   box-sizing: border-box;
   /*规定以慢速开始，然后变快,最后以慢速结束*/
 }
@@ -29,18 +31,23 @@
 /**
 使控件移动到页面右端
 */
-.moveto-right{
-  transform:translateX(100%);
+
+.moveto-right {
+  transform: translateX(100%);
 }
+
 /**
 使控件移动到页面左端
 */
-.moveto-left{
-  transform:translateX(-100%);
+
+.moveto-left {
+  transform: translateX(-100%);
 }
+
 /**
 使控件移动到页面中间
 */
-.moveto-center{
+
+.moveto-center {
   transform: translateX(0);
 }

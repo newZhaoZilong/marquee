@@ -6,63 +6,45 @@ Component({
   properties: {
     //跑马灯对象数组
     //对象有三个字段,分别是id,content,staytime
-    marqueeList:{
-      type:Array,
-      observer:function(){
+    marqueeList: {
+      type: Array,
+      observer: function() {
         console.log('有值了');
         this.startMarquee();
       }
     },
     //当前角标
-    current:{
-      type:Number,
-      value:0
+    current: {
+      type: Number,
+      value: 0
     },
     //滑动时间
-    duration:{
-      type:Number,
-      value:3
+    duration: {
+      type: Number,
+      value: 3
     },
     //滑动方向
-    direction:{
+    direction: {
       type: String,
       value: 'left'
     }
-
-  },
-
-  /**
-   * 组件的初始数据
-   */
-  data: {
-
-  },
-  show(){
-    // this.setData({
-    //   nextClass: null,
-    //   currentClass: null,
-    // }, this.executeAnimation);
-  },
-  hide(){
-    
   },
   pageLifetimes: {
-    show: function () {
+    show: function() {
       // 页面被展示
       // this.executeAnimation();
-      if (this.data.isNotFirst && this.data.marqueeList.length>0){
+      if (this.data.isNotFirst && this.data.marqueeList.length > 0) {
         this.data.isStop = false;
         this.startMarquee();
       }
       this.data.isNotFirst = true;
-      
     },
-    hide: function () {
+    hide: function() {
       // 页面被隐藏
       console.log('清除计时器', this.data.marqueeTimeoutId, this.data.animationTimeoutId);
       this.stopMarquee();
     },
-    resize: function (size) {
+    resize: function(size) {
       // 页面尺寸变化
     }
   },
@@ -77,11 +59,9 @@ Component({
       clearTimeout(this.data.marqueeTimeoutId);
       var interval = this.data.marqueeList[this.data.current].stayTime * 1000 || 3000;
       if (!this.data.isStop) {
-      this.data.marqueeTimeoutId = setTimeout(() => {
-        
-        this.executeAnimation(this.data.direction);
-        
-      }, interval);
+        this.data.marqueeTimeoutId = setTimeout(() => {
+          this.executeAnimation(this.data.direction);
+        }, interval);
       }
     },
     /**
@@ -113,12 +93,11 @@ Component({
               currentClass: currentClass,
               nextClass: 'moveto-center'
             })
-            
           }, 500);
         }
-       
+
       })
-    
+
     },
 
     /**
@@ -163,11 +142,11 @@ Component({
     /**
      *停止跑马灯 
      */
-    stopMarquee(){
+    stopMarquee() {
       console.log('停止计时器');
       clearTimeout(this.data.marqueeTimeoutId);
       clearTimeout(this.data.animationTimeoutId);
-      this.data.isStop=true;
+      this.data.isStop = true;
     }
   }
 })
