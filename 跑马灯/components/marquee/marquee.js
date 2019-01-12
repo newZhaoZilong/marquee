@@ -5,11 +5,11 @@ Component({
    */
   properties: {
     //跑马灯对象数组
-    //对象有三个字段,分别是id,content,staytime
+    //对象有三个字段,分别是id,content,delay
     marqueeList: {
       type: Array,
       observer: function() {
-        console.log('有值了');
+        // console.log('有值了');
         this.startMarquee();
       }
     },
@@ -41,7 +41,7 @@ Component({
     },
     hide: function() {
       // 页面被隐藏
-      console.log('清除计时器', this.data.marqueeTimeoutId, this.data.animationTimeoutId);
+      // console.log('清除计时器', this.data.marqueeTimeoutId, this.data.animationTimeoutId);
       this.stopMarquee();
     },
     resize: function(size) {
@@ -53,11 +53,11 @@ Component({
    */
   methods: {
     /**
-     * 执行跑马灯,跑马灯的等待时间根据条目的stayTime的值变化
+     * 执行跑马灯,跑马灯的等待时间根据条目的delay的值变化
      */
     startMarquee() {
       clearTimeout(this.data.marqueeTimeoutId);
-      var interval = this.data.marqueeList[this.data.current].stayTime * 1000 || 3000;
+      var interval = this.data.marqueeList[this.data.current].delay * 1000 || 3000;
       if (!this.data.isStop) {
         this.data.marqueeTimeoutId = setTimeout(() => {
           this.executeAnimation(this.data.direction);
@@ -84,7 +84,7 @@ Component({
         nextClass: nextClass,
         nextIndex: nextIndex,
       }, () => {
-        console.log('executeAnimation');
+        // console.log('executeAnimation');
         //准备就绪后开始执行动画，将当前元素向左移动,将下一个元素移动到中间
         //这里不加个延时器手机上就可能有bug,
         if (!this.data.isStop) {
@@ -113,7 +113,7 @@ Component({
         nextClass: null,
         currentClass: null,
       }, () => {
-        console.log('transitionend')
+        // console.log('transitionend')
         //将当前的next元素转化为current元素,前提是清除了transform样式,否则转换的过程中nextClass变成了currentClass会造成元素
         //移动,动画结束,先清除样式,再调整当前current位置
         this.setData({
@@ -143,7 +143,7 @@ Component({
      *停止跑马灯 
      */
     stopMarquee() {
-      console.log('停止计时器');
+      // console.log('停止计时器');
       clearTimeout(this.data.marqueeTimeoutId);
       clearTimeout(this.data.animationTimeoutId);
       this.data.isStop = true;
